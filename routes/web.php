@@ -14,4 +14,5 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
+// 初期画面
 Route::get('/','App\Http\Controllers\ArticleController@index');
