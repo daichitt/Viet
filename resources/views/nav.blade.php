@@ -22,6 +22,7 @@
     </li>
     @endauth
 
+    @auth
     <!-- Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -39,10 +40,11 @@
         </button>
       </div>
     </li>
-    <form id="logout-button" method="POST" action="">
+    <form id="logout-button" method="POST" action="{{ route('logout') }}">
+      @csrf
     </form>
     <!-- Dropdown -->
-    <!-- $ docker-compose exec workspace php artisan make:migration create_articles_table --create=articles -->
+    @endauth
 
   </ul>
 

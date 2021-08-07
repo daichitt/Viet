@@ -10,6 +10,13 @@ use App\Http\Requests\ArticleRequest;
 class ArticleController extends Controller
 {
 
+    //==========ここから追加========== 
+    public function __construct()
+    {
+        $this->authorizeResource(Article::class, 'article');
+    }
+    //==========ここまで追加========== 
+
     public function index()
     {
         $articles = Article::all()->sortByDesc('created_at');
@@ -42,4 +49,27 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
     //==========ここまで追加==========
+
+
+    public function update(ArticleRequest $request, Article $article)
+    {
+        $article->fill($request->all())->save();
+        return redirect()->route('articles.index');
+    }
+    
+    //==========ここから追加==========
+    public function destroy(Article $article)
+    {
+        $article->delete();
+        return redirect()->route('articles.index');
+    }
+    //==========ここまで追加==========
+
+
+    //-- ここから追加
+    public function show(Article $article)
+    {
+        return view('articles.show', ['article' => $article]);
+    }    
+    //-- ここまで追加
 }

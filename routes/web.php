@@ -20,7 +20,7 @@ use App\Http\Controllers\PostController;
 Route::get('/','App\Http\Controllers\ArticleController@index')->name('articles.index');
 // Route::resource('/articles', 'ArticleController'); Ver6記述方法
 Route::resource('articles', ArticleController::class)->except(['index'])->middleware('auth'); # Ver8記述方法 index除外
-// Route::resource('/articles', 'ArticleController');
+Route::resource('/articles', ArticleController::class)->only(['show']); //-- この行を追加
 // ->middleware('auth') これでログインしているかを確認しログインしていない場合は使用可能にする
 Auth::routes();
 
